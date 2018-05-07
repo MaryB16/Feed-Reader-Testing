@@ -23,24 +23,36 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
-        });
-
-
+        
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-
-
+        
+        it('are defined', function() {
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
+        });
+        
+        it('have a non empty URL', function (){
+            allFeeds.forEach(function(element){
+                expect(element.url).toBeDefined();
+                expect(element.url.length).not.toBe(0);
+            });
+        });
+    
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        
+        it('have a defined name', function (){
+            allFeeds.forEach(function(element){
+                expect(element.name).toBeDefined();
+                expect(element.name.length).not.toBe(0);
+            });
+        });
     });
-
 
     /* TODO: Write a new test suite named "The menu" */
 /*eslint-disable-next-line indent*/
