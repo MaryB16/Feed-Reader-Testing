@@ -7,7 +7,8 @@ module.exports = {
 	},
 	rules: {
     	"indent": ["error", 4],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "no-multiple-empty-lines": [2, {"max": 2, "maxEOF": 1}]
 	},
 	"plugins":[
 		"jasmine"
