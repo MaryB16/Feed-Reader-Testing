@@ -102,7 +102,8 @@ $(function() {
             //loadFeed(0, function (){
             //done();
         //})
-            loadFeed(0,done);
+            loadFeed(0, done);
+
         });
         
         it('are loaded', function (done) {
@@ -112,9 +113,28 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-/*eslint-disable-next-line indent*/
+    /*eslint-disable-next-line indent*/
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    describe('New Feed Selection', function (){
+        let firstFeed;
+        let secondFeed;
+        
+        beforeEach(function(done){ 
+            loadFeed(0, function() {
+                firstFeed = $('.feed').html();
+                loadFeed(1, function (){
+                    secondFeed = $('feed').html();
+                    done();
+                });   
+            });
+        });
+        
+        it("changes the content when a new feed is loaded", function (){
+            expect(firstFeed).not.toBe(secondFeed);
+        });
+    });
+    
 }());
