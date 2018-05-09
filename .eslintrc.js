@@ -3,7 +3,8 @@ module.exports = {
 	"env": {
 		"jasmine": true,
 		"jquery": true,
-		"es6": true
+		"es6": true,
+        "browser":true
 	},
 	rules: {
     	"indent": ["error", 4],
