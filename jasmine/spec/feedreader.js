@@ -31,11 +31,11 @@ $(function () {
 
         it('changes visibility on click', function () {
             const menuIcon = document.querySelector('.menu-icon-link');
-            
+
             // Simulate first click, the menu should be displayed
             menuIcon.click();
             expect(body).not.toHaveClass('menu-hidden');
-            
+
             // Simulate second click, the menu should be hidden
             menuIcon.click();
             expect(body).toHaveClass('menu-hidden');
@@ -44,8 +44,6 @@ $(function () {
 
     describe('Initial Entries', function () {
         beforeEach(function (done) {
-            // Clear the feed before each test
-            $('.feed').empty();
             loadFeed(0, done);
         });
 
@@ -61,7 +59,6 @@ $(function () {
 
         beforeEach(function (done) {
             const feedContainer = $('.feed');
-            feedContainer.empty();
             loadFeed(0, function () {
                 firstFeed = feedContainer.html();
                 loadFeed(1, function () {
@@ -71,8 +68,20 @@ $(function () {
             });
         });
 
-        it("changes the content when a new feed is loaded", function () {
+        it('changes the content when a new feed is loaded', function () {
             expect(firstFeed).not.toBe(secondFeed);
+        });
+
+        it('does not work for out-of-bound feed ids', function () {
+            const lowerBound = -1;
+            const upperBound = allFeeds.length + 1;
+            expect(function () {
+                loadFeed(lowerBound);
+            }).toThrowError(TypeError);
+
+            expect(function () {
+                loadFeed(upperBound);
+            }).toThrowError(TypeError);
         });
     });
 
