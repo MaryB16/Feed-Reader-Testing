@@ -1,9 +1,7 @@
 /*global allFeeds:true, loadFeed*/
 
 $(function () {
-
     describe('RSS Feeds', function () {
-
         it('are defined', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -33,25 +31,26 @@ $(function () {
 
         it('changes visibility on click', function () {
             const menuIcon = document.querySelector('.menu-icon-link');
-            // simulate first click, the menu should be displayed
+            
+            // Simulate first click, the menu should be displayed
             menuIcon.click();
             expect(body).not.toHaveClass('menu-hidden');
-            //simulate second click, the menu should be hidden
+            
+            // Simulate second click, the menu should be hidden
             menuIcon.click();
             expect(body).toHaveClass('menu-hidden');
         });
-
     });
 
     describe('Initial Entries', function () {
-        const feedContainer = $('.feed');
-
         beforeEach(function (done) {
+            // Clear the feed before each test
+            $('.feed').empty();
             loadFeed(0, done);
         });
 
         it('are loaded', function (done) {
-            expect(feedContainer.find('.entry').length).toBeGreaterThan(0);
+            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
             done();
         });
     });
@@ -61,10 +60,12 @@ $(function () {
         let secondFeed;
 
         beforeEach(function (done) {
+            const feedContainer = $('.feed');
+            feedContainer.empty();
             loadFeed(0, function () {
-                firstFeed = $('.feed').html();
+                firstFeed = feedContainer.html();
                 loadFeed(1, function () {
-                    secondFeed = $('feed').html();
+                    secondFeed = feedContainer.html();
                     done();
                 });
             });
