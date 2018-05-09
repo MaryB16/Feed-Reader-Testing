@@ -57,6 +57,8 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
 
     describe('The menu', function (){
+        const body =$("body")[0];
+        
         /*eslint-disable-next-line indent*/
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -65,7 +67,7 @@ $(function() {
          */
         
         it ('is hidden by default', function (){
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect(body).toHaveClass('menu-hidden');
         });        
     
         /*eslint-disable-next-line indent*/
@@ -76,13 +78,13 @@ $(function() {
           */
     
         it('changes visibility on click', function (){
-            const menuIcon = $('.menu-icon-link');
+            const menuIcon = document.querySelector('.menu-icon-link');
             // simulate first click, that we click on the men-icon and the menu is displayed
             menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(false);
+            expect(body).not.toHaveClass('menu-hidden');
             //simulate second click, the menu should be hidden;
             menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect(body).toHaveClass('menu-hidden');
         });
             
     });
